@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>CALCULATOR</title>
+</head>
+<body>
+    <div class="container">
+        <div class="calculator">
+            <!-- <div class="date-time">
+                <p id="show-date" style="font-size:13px;background-color: red;"></p>
+                <p id="time" style="background-color:pink;">mccm</p>
+            </div> -->
+            <p id="date-time" style="font-size:13px;"><span ></span></p>
+            <input type="text" placeholder="0" id="output-screen">
+            <button onclick="Clear()">C</button>
+            <button onclick="del()">DEL</button>
+            <button onclick="display('%')">%</button>
+            <button onclick="display('/')">/</button>
+            <button onclick="display('7')">7</button>
+            <button onclick="display('8')">8</button>
+            <button onclick="display('9')">9</button>
+            <button onclick="display('*')">*</button>
+            <button onclick="display('4')">4</button>
+            <button onclick="display('5')">5</button>
+            <button onclick="display('6')">6</button>
+            <button onclick="display('-')">-</button>
+            <button onclick="display('1')">1</button>
+            <button onclick="display('2')">2</button>
+            <button onclick="display('3')">3</button>
+            <button onclick="display('+')">+</button>
+            <button onclick="display('.')">.</button>
+            <button onclick="display('0')">0</button>
+            <button onclick="Calculate()" class="equal">=</button>
+        </div>
+    </div>
+
+    <script>
+        let outputScreen = document.getElementById("output-screen");
+        function display(num){
+            outputScreen.value += num;
+        }
+
+        function Calculate(){
+            try{
+                outputScreen.value = eval(outputScreen.value);
+            }
+            catch(err){
+                alert("Invalid Input");
+            }
+        }
+
+        function Clear(){
+            outputScreen.value = "";
+        }
+        function del(){
+            outputScreen.value = outputScreen.value.slice(0,-1);
+        }
+
+        function display_c() {
+    var refresh = 1000; // Refresh rate in milliseconds
+    setInterval(display_ct, refresh);
+}
+
+// function display_ct() {
+//     const d = new Date();
+//     document.getElementById("show-date").innerHTML = d.toDateString();
+//     var ampm = d.getHours( ) >= 12 ? ' PM' : ' AM';
+//     var t = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + ampm;
+//     document.getElementById("time").innerHTML = t;
+// }
+
+// // Call display_c() to start updating the date and time
+// display_c();
+
+
+function display_c() {
+    var refresh = 1000; // Refresh rate in milliseconds
+    setInterval(display_ct, refresh);
+}
+
+function display_ct() {
+    const d = new Date();
+    var ampm = d.getHours() >= 12 ? ' PM' : ' AM';
+    var timeString = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds() + ampm;
+    
+    // Combine date and time in one string
+    var dateTimeString = d.toDateString() + "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;" + timeString;
+    
+    document.getElementById("date-time").innerHTML = dateTimeString;
+}
+
+// Call display_c() to start updating the date and time
+display_c();
+        </script>
+</body>
+</html>
